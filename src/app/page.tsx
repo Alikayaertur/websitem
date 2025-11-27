@@ -8,6 +8,8 @@ import { FlipWords } from "@/components/ui/flip-words";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import { SplineScene } from "@/components/ui/splite";
+import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -60,103 +62,98 @@ export default function Home() {
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Hero Section with 3D Spline */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <Spotlight
           className="-top-40 left-0 md:left-60 md:-top-20"
           fill="#8b5cf6"
         />
 
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 opacity-30">
           <SparklesCore
             id="hero-sparkles"
             background="transparent"
             minSize={0.4}
             maxSize={1.4}
-            particleDensity={30}
+            particleDensity={20}
             className="w-full h-full"
             particleColor="#8b5cf6"
             speed={0.3}
           />
         </div>
 
-        <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <HoverBorderGradient
-              containerClassName="mx-auto mb-8"
-              className="flex items-center gap-2 text-sm"
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6">
+          <div className="flex flex-col lg:flex-row items-center gap-8">
+            {/* Left content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="flex-1 text-center lg:text-left"
             >
-              <span className="text-violet-400">✦</span>
-              <span>Available for Freelance Projects</span>
-            </HoverBorderGradient>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-6"
-          >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 via-purple-500 to-pink-500">
-                Ruzi.dev
-              </span>
-            </h1>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-3xl md:text-5xl lg:text-6xl font-bold mb-8"
-          >
-            <span className="text-white">I Build</span>
-            <FlipWords words={words} className="text-violet-400" />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="max-w-2xl mx-auto mb-12"
-          >
-            <TextGenerateEffect
-              words="Transforming ideas into digital reality. Full-stack developer crafting modern, performant, and scalable web solutions."
-              className="text-lg md:text-xl text-gray-400"
-            />
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-6"
-          >
-            <Link href="/contact">
-              <MovingBorderButton
-                borderRadius="2rem"
-                className="bg-black text-white border-violet-500/50 px-8 py-4 text-lg font-medium"
-                containerClassName="h-auto w-auto"
+              <HoverBorderGradient
+                containerClassName="mx-auto lg:mx-0 mb-6"
+                className="flex items-center gap-2 text-sm"
               >
-                <span className="flex items-center gap-2">
-                  Let&apos;s Talk
-                  <ArrowRight className="w-5 h-5" />
+                <span className="text-violet-400">✦</span>
+                <span>Available for Freelance Projects</span>
+              </HoverBorderGradient>
+
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 via-purple-500 to-pink-500">
+                  Ruzi.dev
                 </span>
-              </MovingBorderButton>
-            </Link>
-            <Link
-              href="/projects"
-              className="group flex items-center gap-2 px-8 py-4 rounded-full border border-white/20 hover:border-violet-500/50 hover:bg-white/5 text-white font-medium text-lg transition-all duration-300"
+              </h1>
+
+              <div className="text-2xl md:text-4xl lg:text-5xl font-bold mb-6">
+                <span className="text-white">I Build</span>
+                <FlipWords words={words} className="text-violet-400" />
+              </div>
+
+              <div className="max-w-xl mb-8">
+                <TextGenerateEffect
+                  words="Transforming ideas into digital reality. Full-stack developer crafting modern, performant, and scalable web solutions."
+                  className="text-lg text-gray-400"
+                />
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4">
+                <Link href="/contact">
+                  <MovingBorderButton
+                    borderRadius="2rem"
+                    className="bg-black text-white border-violet-500/50 px-8 py-4 text-lg font-medium"
+                    containerClassName="h-auto w-auto"
+                  >
+                    <span className="flex items-center gap-2">
+                      Let&apos;s Talk
+                      <ArrowRight className="w-5 h-5" />
+                    </span>
+                  </MovingBorderButton>
+                </Link>
+                <Link
+                  href="/projects"
+                  className="group flex items-center gap-2 px-8 py-4 rounded-full border border-white/20 hover:border-violet-500/50 hover:bg-white/5 text-white font-medium text-lg transition-all duration-300"
+                >
+                  View Projects
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Right content - 3D Spline */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex-1 w-full h-[400px] lg:h-[600px] relative"
             >
-              View Projects
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </motion.div>
+              <SplineScene
+                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                className="w-full h-full"
+              />
+            </motion.div>
+          </div>
         </div>
 
         {/* Scroll Indicator */}
